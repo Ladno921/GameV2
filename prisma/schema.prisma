@@ -1,0 +1,95 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model items {
+  id            Int                   @id @default(autoincrement())
+  title         String                @db.VarChar(255)
+  image         String                @db.VarChar(255)
+  description   String                @db.VarChar(2000)
+
+  release       String                @db.VarChar(255)
+  developer     String                @db.VarChar(255)
+  platform      String                @db.VarChar(255)
+
+  OS            String                @db.VarChar(255)
+  CPU           String                @db.VarChar(255)
+  RAM           String                @db.VarChar(255)
+  video_card    String                @db.VarChar(255)
+  DirectX       String                @db.VarChar(255)
+  disc_space    String                @db.VarChar(255)
+
+  cat_id        Int
+
+  users         user_items[]
+  category      item_category[]
+}
+
+model item_category {
+  category      categories            @relation(fields:[cat_id], references: [id])
+  cat_id        Int
+  item          items                 @relation(fields:[item_id], references: [id])
+  item_id       Int
+
+  @@id([cat_id,item_id])
+}
+
+model user_items{
+  users         users                 @relation(fields: [user_id], references: [id])
+  user_id       Int
+  item          items                 @relation(fields: [item_id], references: [id])
+  item_id       Int
+
+  @@id([user_id,item_id])
+}
+
+model categories {
+  id            Int                   @id @default(autoincrement())
+  title         String                @db.VarChar(255)
+
+  item          item_category[]
+}
+
+model users{
+  id            Int                   @id @default(autoincrement())
+  email         String                @db.VarChar(255)
+  name          String                @db.VarChar(255)
+  password      String                @db.VarChar(255)
+  type          String                @db.VarChar(2)
+
+  items         user_items[]
+}
+
+model comments {
+  id            Int                   @id @default(autoincrement())
+  item_id       Int
+  text          String                @db.VarChar(255)
+  date          String                @db.VarChar(20)
+  name      String                    @db.VarChar(255)
+}
+
+model basket {
+  id            Int                   @id @default(autoincrement())
+  title         String                @db.VarChar(255)
+  image         String                @db.VarChar(255)
+  description   String                @db.VarChar(2000)
+
+  release       String                @db.VarChar(255)
+  developer     String                @db.VarChar(255)
+  platform      String                @db.VarChar(255)
+
+  OS            String                @db.VarChar(255)
+  CPU           String                @db.VarChar(255)
+  RAM           String                @db.VarChar(255)
+  video_card    String                @db.VarChar(255)
+  DirectX       String                @db.VarChar(255)
+  disc_space    String                @db.VarChar(255)
+}

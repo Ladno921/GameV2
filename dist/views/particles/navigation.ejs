@@ -1,0 +1,117 @@
+<% if(auth && admin){ %>
+  <script>
+    function openNav() {
+      document.getElementById("myNav_1").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav_1").style.width = "0%";
+    }
+    function open_Nav() {
+      document.getElementById("myNav_2").style.width = "100%";
+    }
+
+    function close_Nav() {
+      document.getElementById("myNav_2").style.width = "0%";
+    }
+  </script>
+  <div id="myNav_1" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <div class="overlay-content">
+      <a href="/items"><span>Игры</span></a>
+      <a href="/items/create"><span>Создать игру</span></a>
+      <a href="/category/store"><span>Создать категорию</span></a>
+      <a href="/create-admin"><span>Создать аккаунт</span></a>
+      <a href="/users"><span>Пользователи</span></a>
+      <a href="/logout"><span>Выйти</span></a>
+    </div>
+  </div>
+
+  <div id="myNav_2" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="close_Nav()">×</a>
+    <div class="overlay-content">
+      <a href="/users"><span>Пользователи</span></a>
+      <a href="/logout"><span>Выйти</span></a>
+    </div>
+  </div>
+
+  <div class="header_Auth">
+    <h1 class="header__name"><a href="/">Главная</a></h1>
+    <button class="header__button" style="--clr:#8A2BE2"><a href="/items"><span>Игры</span></a></button>
+
+    <% if (auth && admin) { %>
+
+      <form class="search__button" tyle="--clr:#8A2BE2" action="/search" method="post">
+
+        <input class="search" style="--clr:#8A2BE2" name="title" type="text" placeholder="Поиск..." required>
+
+        <input class="search__button" style="--clr:#8A2BE2" type="submit" value="Найти">
+
+      </form>
+
+      <div class="right__side">
+        <div class="chip">
+          <a href="/personal-account">
+            <img src="/img/img_avatar.png">
+            <%= name %>
+          </a>
+        </div>
+
+        <button class="header__button1" style="--clr:#8A2BE2"><a href="/users"><span>Пользователи</span></a></button>
+        <button class="header__button1" style="--clr:#8A2BE2"><a href="/logout"><span>Выйти</span></a></button>
+
+        <span class="menu-button1 color" onclick="openNav()">☰</span>
+        <span class="menu-button2 color" onclick="open_Nav()">☰</span>
+
+      </div>
+
+      <% } %>
+
+        <div class="header__bottom">
+          <% if(auth && admin){ %>
+            <button class="header__button2" style="--clr:#8A2BE2"><a href="/items/create"><span>Создать игру</span></a></button>
+            <button class="header__button2" style="--clr:#8A2BE2"><a href="/category/store"><span>Создать категорию</span></a></button>
+            <button class="header__button2" style="--clr:#8A2BE2"><a href="/create-admin"><span>Создать аккаунт</span></a></button>
+            <button class="header__button2" style="--clr:#8A2BE2"><a href="/basket"><span>Избранное</span></a></button>
+            <% } %>
+        </div>
+  </div>
+  <% }else{ %>
+    <div class="header_NoAdmin">
+      <h1 class="header__name"><a href="/">Главная</a></h1>
+      <button class="header__button" style="--clr:#8A2BE2"><a href="/items"><span>Игры</span></a></button>
+
+      <% if(auth){ %>
+        <button class="header__button" style="--clr:#8A2BE2"><a href="/items/create"><span>Создать игру</span></a></button>
+
+        <form class="search__button" style="--clr:#8A2BE2" action="/search" method="post">
+
+          <input class="search" style="--clr:#8A2BE2" name="title" type="text" placeholder="Поиск..." required>
+
+          <input class="search__button" style="--clr:#8A2BE2" type="submit" value="Найти">
+
+        </form>
+
+        <div class="right__side">
+          <div class="chip">
+            <a href="/personal-account">
+              <img src="/img/img_avatar.png">
+              <%= name %>
+            </a>
+          </div>
+          <button class="header__button" style="--clr:#8A2BE2"><a href="/logout"><span>Выйти</span></a></button>
+
+          <% }else{ %>
+            <form class="search__button" style="--clr:#8A2BE2" action="/search" method="post">
+              <input class="search" style="--clr:#8A2BE2" name="title" type="text" placeholder="Поиск..." required>
+              <input class="search__button" style="--clr:#8A2BE2" type="submit" value="Найти">
+            </form>
+            <span class="menu-button1 color" onclick="openNav()">☰</span>
+            <span class="menu-button2 color" onclick="open_Nav()">☰</span>
+            <div class="header_buttonRL">
+              <button class="header__button" style="--clr:#8A2BE2"><a href="/auth"><span>Войти</span></a></button>
+            </div>
+            <% } %>
+        </div>
+    </div>
+    <% } %>

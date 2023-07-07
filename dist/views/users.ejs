@@ -1,0 +1,29 @@
+<%- include('./particles/header.ejs') %>
+
+    <%- include('./particles/navigation.ejs') %>
+
+        <% if ( admin ) { %>
+            <div class="content">
+                <% for(let i=0; i < users.length; i++) {%>
+                    <div class="userView">
+                        <div class="userView">
+                            Ник:<%= users[i].name %>
+                        </div>
+                        <div class="userView">
+                            Email:<%= users[i].email %>
+                        </div>
+                        <div class="userView" type="password">
+                            Пароль:<%= users[i].password %>
+                        </div>
+                        <a href="/users/<%= users[i].id %>/delete"><button class="floating-button">Удалить</button></a>
+                    </div>
+                    <% }%>
+
+            </div>
+            <% } else { %>
+                <h1 class="Error"> ERROR 404 </h1>
+                <h1 class="Error"> Эта страница недоступна </h1>
+                <% } %>
+
+
+                    <%- include('./particles/footer.ejs') %>

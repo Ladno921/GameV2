@@ -1,0 +1,51 @@
+.chip {
+    /* margin-top: 20px; */
+    display: inline-block;
+    padding: 0 20px;
+    height: 50px;
+    font-size: 20px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 25px;
+    background-color: rgb(red, green, blue);
+  text-shadow: 0 0 20px rgb(178, 82, 178),0 0 30px rgb(178, 82, 178),0 0 40px rgb(178, 82, 178),0 0 50px rgb(178, 82, 178);
+
+}
+
+.chip img {
+    float: left;
+    margin: 0 10px 0 -25px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.user__inf-item {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: 100;
+    margin: 0%;
+    padding: 0%;
+    font-size: 25px;
+}
+
+.item-text {
+    opacity: 50%;
+    display: inline-block;
+    margin: 2%;
+    padding: 0%;
+}
+
+.input {
+    font-size: 20px;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.form-pers-acc {
+    text-align: center;
+    text-decoration: none;
+}
+
+.form-item {
+    padding-top: 20px;
+}

@@ -1,0 +1,27 @@
+<%- include('./particles/header.ejs') %>
+
+<%- include('./particles/navigation.ejs') %>
+
+    <!-- <div class="content"> -->
+        <% for (let i=0; i < items.length; i++) { %>
+            <div class="section">
+                <a href="/items/<%= items[i].id %>/show">
+                    <h2 class="section__title"><%= items[i].title %></h2>
+                    <img class="section__image" src="/img/<%= items[i].image %>">
+                </a>
+                <% if(admin){ %>
+                    <form class="add_basket" method="post" action="/items/addToBasket">
+                        <input type="hidden" value="<%= items[i].id %>" name="id">
+                        <input class="add_basket-button" type="submit" value="Добавить в избранное">
+                      </form>
+        
+                      <form class="button_delete" method="post" action="/items/delete">
+                        <input type="hidden" value="<%= items[i].id %>" name="id">
+                        <input class="button_delete-button" type="submit" value="Удалить">
+                      </form>
+                <% } %>
+            </div>
+        <% } %>
+    <!-- </div> -->
+
+<%- include('./particles/footer.ejs') %>

@@ -1,0 +1,71 @@
+<%- include('../particles/header.ejs') %>
+
+  <%- include('../particles/navigation.ejs') %>
+
+    <div class="dropdown">
+      <div class="dropdown__title">Категории</div>
+      <div class="dropdown-content">
+        <% for (let j=0; j < categories.length; j++) { %>
+          <button class="dropdown__item">
+            <a href="/categories/<%= categories[j].id %>">
+              <%= categories[j].title %>
+            </a>
+          </button>
+          <% } %>
+      </div>
+    </div>
+
+    <div class="content-plays">
+
+
+
+      <% for (let i=0; i < items.length; i++) { %>
+
+        <% if (auth) { %>
+          <div class="section card">
+            <a href="/items/<%= items[i].id %>/show">
+              <h2 class="section__title-black">
+                <%= items[i].title %>
+              </h2>
+              <img class="section__image" src="/img/<%= items[i].image %>">
+            </a>
+              <form class="add_basket" method="post" action="/items/addToBasket">
+                <input type="hidden" value="<%= items[i].id %>" name="id">
+                <input class="add_basket-button" type="submit" value="Добавить в избранное">
+              </form>
+
+              <form class="add_basket" method="post" action="/items/deleteFromBasket">
+                <input type="hidden" value="<%= items[i].id %>" name="id">
+                <input class="add_basket-button" type="submit" value="Убрать из избранного">
+              </form>
+
+              <form class="button_delete" method="post" action="/items/delete">
+                <input type="hidden" value="<%= items[i].id %>" name="id">
+                <input class="button_delete-button" type="submit" value="Удалить">
+              </form>
+          </div>
+          <% } else { %>
+            <div class="section card" >
+              <a href="/items/<%= items[i].id %>/show">
+                <h2 class="section__title-black">
+                  <%= items[i].title %>
+                </h2>
+                <img class="section__image" src="/img/<%= items[i].image %>">
+              </a>
+            </div>
+            <% } %>
+              <% } %>
+
+    </div>
+
+    <!-- <% if(12 > 5){ %> -->
+      <div class="PageLine">
+        <% for (let i=1; i <= 2; i++) { %>
+          <a href="?page=<%= i %>" class="Page">
+            <%= i %>
+          </a>
+          <% } %>
+      </div>
+    <!-- <%  } %> -->
+
+    <%- include('../particles/footer.ejs') %>

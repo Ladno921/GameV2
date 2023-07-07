@@ -1,0 +1,25 @@
+<%- include('../particles/header.ejs') %>
+
+    <%- include('../particles/navigation.ejs') %>
+
+        <% if(admin) {%>
+            <div class="content">
+                <form class="create__form" action="/category/create" method="post">
+                    <div class="form">
+                        <h1 class="color">Создание Категории</h1>
+                        <div class="form-group">
+                            <label class="form-group__label color" for="title">Название</label>
+                            <input class="form-group__input" type="text" id="title" name="title"
+                                placeholder="Введите Название Категории">
+                        </div>
+
+                        <input class="button1 button-block" type="submit" value="Создать">
+                    </div>
+                </form>
+            </div>
+            <% } else { %>
+                <h1 class="Error"> ERROR 404 </h1>
+                <h1 class="Error"> Эта страница недоступна </h1>
+                <% } %>
+
+                    <%- include('../particles/footer.ejs') %>

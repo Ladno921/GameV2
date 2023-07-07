@@ -1,0 +1,88 @@
+<%- include('./particles/header.ejs') %>
+
+  <%- include('./particles/navigation.ejs') %>
+
+    <script>
+      $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+        var $this = $(this),
+          label = $this.prev('label');
+
+        if (e.type === 'keyup') {
+          if ($this.val() === '') {
+            label.removeClass('active highlight');
+          } else {
+            label.addClass('active highlight');
+          }
+        } else if (e.type === 'blur') {
+          if ($this.val() === '') {
+            label.removeClass('active highlight');
+          } else {
+            label.removeClass('highlight');
+          }
+        } else if (e.type === 'focus') {
+
+          if ($this.val() === '') {
+            label.removeClass('highlight');
+          }
+          else if ($this.val() !== '') {
+            label.addClass('highlight');
+          }
+        }
+
+      });
+
+      $('.tab a').on('click', function (e) {
+
+        e.preventDefault();
+
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+
+        target = $(this).attr('href');
+
+        $('.tab-content > div').not(target).hide();
+
+        $(target).fadeIn(600);
+
+      });
+    </script>
+
+    <form class="form__center" action="/registration" method="post">
+      <div class="form">
+
+        <ul class="tab-group">
+          <li class="tab active"><a href="/registration">Зарегистрироваться</a></li>
+          <li class="tab"><a href="/auth">Войти</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <h1>Регистрация</h1>
+
+          <div class="field-wrap">
+            <label class="label">
+              Имя
+            </label>
+            <input class="form-group__input" id="name" name="name" type="text" placeholder="Введите Имя" required>
+          </div>
+
+          <div class="field-wrap">
+            <label class="label">
+              Email Адрес
+            </label>
+            <input class="form-group__input" id="email" name="email" type="email" placeholder="Введите email" required>
+          </div>
+
+          <div class="field-wrap">
+            <label class="label">
+              Пароль
+            </label>
+            <input class="form-group__input" id="password" name="password" type="password" placeholder="Введите Пароль"
+              required>
+          </div>
+
+          <button type="submit" class="button1 button-block">Зарегистрироваться</button>
+        </div>
+    </form>
+
+    <%- include('./particles/footer.ejs') %>

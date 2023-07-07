@@ -1,0 +1,342 @@
+<%- include('../particles/header.ejs') %>
+
+<%- include('../particles/navigation.ejs') %>
+
+<% if (auth && admin) { %>
+
+  <div class="form-item">
+    <div class="item">
+    <div class="section-show">
+      <h2 class="section__title">
+        <%= game.title %>
+      </h2>
+      <img class="section__image" src="/img/<%= game.image %>">
+    </div>
+
+    <div class="system_requirements">
+      <h2 class="show__title" >Системные требования</h2>
+      <span class="system-item">Операционная система: <%= game.OS %></span>
+      <span class="system-item">Процессор: <%= game.CPU %></span>
+      <span class="system-item">Оперативная память: <%= game.RAM %></span>
+      <span class="system-item">Видеокарта: <%= game.video_card %></span>
+      <span class="system-item">DirectX: <%= game.DirectX %></span>
+      <span class="system-item">Место на диске: <%= game.disc_space %></span>
+
+      <span class="system-item">Дата выхода: <%= game.release %></span>
+      <span class="system-item">Разработчик: <%= game.developer %></span>
+      <span class="system-item">Платформа: <%= game.platform %></span>
+    </div>
+    
+
+    <form action="/items/update" method="post">
+      <input name="id" type="hidden" value="<%= game.id %>">
+      <div class="changes">
+        <div class="form-group">
+          <label class="form-group__label" for="title">Название</label>
+          <input value="<%= game.title %>" class="form-group__input" type="text" id="title" name="title" placeholder="Введите Новое Название">
+        </div>
+
+        <div class="form-group-2">
+          <label class="form-group__label" for="image">Изображение</label>
+          <input value="<%= game.image %>" class="form-group__input" type="file" id="image" name="image" placeholder="Выберите новое изображение">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="description">Описание</label>
+          <input value="<%= game.description %>" class="form-group__input" type="text" id="description" name="description" placeholder="Введите Новое Описание">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="OS">Операционная система</label>
+          <input value="<%= game.OS %>" class="form-group__input" type="text" id="OS" name="OS">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="CPU">Процессор</label>
+          <input value="<%= game.CPU %>" class="form-group__input" type="text" id="CPU" name="CPU">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="RAM">Оперативная память</label>
+          <input value="<%= game.RAM %>" class="form-group__input" type="text" id="RAM" name="RAM">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="video_card">Видеокарта</label>
+          <input value="<%= game.video_card %>" class="form-group__input" type="text" id="video_card" name="video_card">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="DirectX">DirectX</label>
+          <input value="<%= game.DirectX %>" class="form-group__input" type="text" id="DirectX" name="DirectX">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="disc_space">Место на диске</label>
+          <input value="<%= game.disc_space %>" class="form-group__input" type="text" id="disc_space" name="disc_space">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="release">Дата выхода</label>
+          <input value="<%= game.release %>" class="form-group__input" type="text" id="release" name="release">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="developer">Разработчик</label>
+          <input value="<%= game.developer %>" class="form-group__input" type="text" id="developer" name="developer">
+        </div>
+
+        <div class="form-group">
+          <label class="form-group__label" for="platform">Платформа</label>
+          <input value="<%= game.platform %>" class="form-group__input" type="text" id="platform" name="platform">
+        </div>
+
+        <div class="form-group">
+          <input class="header__button3" type="submit" value="Обновить">
+        </div>
+      </div>
+    </form>
+
+    <div class="description">
+      <h2>Описание</h2>
+      <h3><%= game.description %></h3>
+    </div>
+
+  <h2 class="newest-white">Новинки</h2>
+    <div class="newest__box">
+      <% for (let i=0; i < items.length; i++) { %>
+        <% if (admin) { %>
+          <div class="section card">
+            <a href="/items/<%= items[i].id %>/show">
+              <h2 class="section__title" style="color: black"><%= items[i].title %></h2>
+              <img class="section__image" src="/img/<%= items[i].image %>">
+            </a>
+            <form class="add_basket" method="post" action="/items/addToBasket">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="add_basket-button" type="submit" value="Добавить в избранное">
+            </form>
+
+            <form class="button_delete" method="post" action="/items/delete">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="button_delete-button" type="submit" value="Удалить">
+            </form>
+          </div>
+        <% } else { %>
+        <div class="section card">
+          <a href="/items/<%= items[i].id %>/show">
+            <h2 class="section__title" style="color: black;"><%= items[i].title %></h2>
+            <img class="section__image" src="/img/<%= items[i].image %>">
+          </a>
+        </div>
+        <% } %>
+      <% } %>
+    </div>
+
+    </div>
+
+    <div class="comments">
+      <h2 class="comments__label">Комментарии</h2>
+      <form action="/items/postComment" method="post">
+        <input name="name" type="hidden" value="<%= name %>">
+        <input name="id" type="hidden" value="<%= game.id %>">
+        <input class="comment__input" type="text" id="text" name="text" placeholder="Введите Комментарий" required>
+        <button class="button__comment" type="submit">Прокомментировать</button>
+      </form>
+    <% if(length > 0){ %>
+
+      <% for(let i = 0; i < comments.length; i++){ %>
+      <div class="comment">
+        <div>
+          <h3 class="comment__item-smaller-1"><%= comments[i].name %></h3>,
+          <h3 class="comment__item-smaller-2"><%= comments[i].date %></h3>
+        </div>
+        <h3 class="comment__item"><%= comments[i].text %></h3>
+      </div>
+      <% if(name == comments[i].name || admin == true) {%>
+        <form class="add_basket" method="post" action="/items/addToBasket">
+          <input type="hidden" value="<%= items[i].id %>" name="id">
+          <input class="add_basket-button" type="submit" value="Добавить в избранное">
+        </form>
+
+        <form class="button_delete" method="post" action="/items/delete">
+          <input type="hidden" value="<%= items[i].id %>" name="id">
+          <input class="button_delete-button" type="submit" value="Удалить">
+        </form>
+      <% } %>
+      <% } %>
+    <% } %>
+    </div>
+
+<% } else if(auth){ %>
+
+<div class="form-item">
+  <div class="item">
+    <div class="section-show">
+      <h2 class="section__title"><%= game.title %></h2>
+      <img class="section__image" src="/img/<%= game.image %>">
+    </div>
+
+    <div class="system_requirements">
+      <h2 class="show__title" >Системные требования</h2>
+      <span class="system-item">Операционная система: <%= game.OS %></span>
+      <span class="system-item">Процессор: <%= game.CPU %></span>
+      <span class="system-item">Оперативная память: <%= game.RAM %></span>
+      <span class="system-item">Видеокарта: <%= game.video_card %></span>
+      <span class="system-item">DirectX: <%= game.DirectX %></span>
+      <span class="system-item">Место на диске: <%= game.disc_space %></span>
+
+      <span class="system-item">Дата выхода: <%= game.release %></span>
+      <span class="system-item">Разработчик: <%= game.developer %></span>
+      <span class="system-item">Платформа: <%= game.platform %></span>
+    </div>
+
+    <div class="description">
+      <h2>Описание</h2>
+      <h3><%= game.description %></h3>
+    </div>
+  
+  <h2 class="newest-white">Новинки</h2>
+    <div class="newest__box">
+      <% for (let i=0; i < items.length; i++) { %>
+        <% if (admin) { %>
+          <div class="section card">
+            <a href="/items/<%= items[i].id %>/show">
+              <h2 class="section__title" style="color: black"><%= items[i].title %></h2>
+              <img class="section__image" src="/img/<%= items[i].image %>">
+            </a>
+            <form class="add_basket" method="post" action="/items/addToBasket">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="add_basket-button" type="submit" value="Добавить в избранное">
+            </form>
+
+            <form class="button_delete" method="post" action="/items/delete">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="button_delete-button" type="submit" value="Удалить">
+            </form>
+          </div>
+        <% } else { %>
+        <div class="section card">
+          <a href="/items/<%= items[i].id %>/show">
+            <h2 class="section__title" style="color: black;"><%= items[i].title %></h2>
+            <img class="section__image" src="/img/<%= items[i].image %>">
+          </a>
+        </div>
+        <% } %>
+      <% } %>
+    </div> 
+  
+    <div class="comments">
+      <h2 class="comments__label">Комментарии</h2>
+      <form action="/items/postComment" method="post">
+        <input name="name" type="hidden" value="<%= name %>">
+        <input name="id" type="hidden" value="<%= game.id %>">
+        <input class="comment__input" type="text" id="text" name="text" placeholder="Введите Комментарий" required>
+        <button class="button__comment" type="submit">Прокомментировать</button>
+      </form>
+    <% if(length > 0){ %>
+
+      <% for(let i = 0; i < comments.length; i++){ %>
+      <div class="comment">
+        <div>
+          <h3 class="comment__item-smaller-1"><%= comments[i].name %></h3>,
+          <h3 class="comment__item-smaller-2"><%= comments[i].date %></h3>
+        </div>
+        <h3 class="comment__item"><%= comments[i].text %></h3>
+      </div>
+      <% if(name == comments[i].name || admin == true) {%>
+      <form class="formDelete" method="post" action="/items/deleteComment">
+        <input type="hidden" value="<%= comments[i].id %>" name="id">
+        <input type="hidden" value="<%= comments[i].name %>" name="name">
+        <input class="deleteComment" type="submit" value="Удалить">
+      </form>
+      <% } %>
+      <% } %>
+    <% } %>
+    </div>
+  </div>
+
+<% }else{ %>
+    
+      <div class="form-item">
+        <div class="item">
+          <div class="section-show">
+            <h2 class="section__title">
+              <%= game.title %>
+            </h2>
+            <img class="section__image" src="/img/<%= game.image %>">
+          </div>
+          
+          <div class="system_requirements">
+            <h2 class="show__title" >Системные требования</h2>
+            <span class="system-item">Операционная система: <%= game.OS %></span>
+            <span class="system-item">Процессор: <%= game.CPU %></span>
+            <span class="system-item">Оперативная память: <%= game.RAM %></span>
+            <span class="system-item">Видеокарта: <%= game.video_card %></span>
+            <span class="system-item">DirectX: <%= game.DirectX %></span>
+            <span class="system-item">Место на диске: <%= game.disc_space %></span>
+
+            <span class="system-item">Дата выхода: <%= game.release %></span>
+            <span class="system-item">Разработчик: <%= game.developer %></span>
+            <span class="system-item">Платформа: <%= game.platform %></span>
+          </div>
+
+          <div class="description">
+            <h2 class="show__title">Описание</h2>
+            <h3><%= game.description %></h3>
+          </div>
+
+          <h2 class="newest-white">Новинки</h2>
+          <div class="newest__box">
+            <% for (let i=0; i < items.length; i++) { %>
+              <% if (admin) { %>
+                <div class="section card">
+                  <a href="/items/<%= items[i].id %>/show">
+                    <h2 class="section__title" style="color: black"><%= items[i].title %></h2>
+                    <img class="section__image" src="/img/<%= items[i].image %>">
+                  </a>
+                  <form class="add_basket" method="post" action="/items/addToBasket">
+                    <input type="hidden" value="<%= items[i].id %>" name="id">
+                    <input class="add_basket-button" type="submit" value="Добавить в избранное">
+                  </form>
+    
+                  <form class="button_delete" method="post" action="/items/delete">
+                    <input type="hidden" value="<%= items[i].id %>" name="id">
+                    <input class="button_delete-button" type="submit" value="Удалить">
+                  </form>
+                </div>
+              <% } else { %>
+              <div class="section card">
+                <a href="/items/<%= items[i].id %>/show">
+                  <h2 class="section__title" style="color: black;"><%= items[i].title %></h2>
+                  <img class="section__image" src="/img/<%= items[i].image %>">
+                </a>
+              </div>
+              <% } %>
+            <% } %>
+          </div> 
+
+          <% if(length > 0){ %>
+            <div class="comments">
+              <h2 class="comments__label">Комментарии</h2>
+              <% for(let i = 0; i < comments.length; i++){ %>
+            
+              <div class="comment">
+                <div>
+                  <h3 class="comment__item-smaller-1"><%= comments[i].name %></h3>,
+                  <h3 class="comment__item-smaller-2"><%= comments[i].date %></h3>
+                </div>
+                <h3 class="comment__item"><%= comments[i].text %></h3>
+              </div>
+            
+              <% } %>
+            </div>
+            
+            <% }else{ %>
+            <div class="comments">
+              <h3 class="newest">Комментарии</h3>
+            </div>
+            <% } %>
+        </div>
+    <% } %>
+
+<%- include('../particles/footer.ejs') %>

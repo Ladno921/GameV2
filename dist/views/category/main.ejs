@@ -1,0 +1,35 @@
+<%- include('../particles/header.ejs') %>
+
+    <%- include('../particles/navigation.ejs') %>
+<div class="content-plays">
+  <% for(let i = 0; i < items.length;i++ ){ %> 
+    <% if (auth) { %>
+        <div class="section card">
+          <a href="/items/<%= items[i].id %>/show">
+            <h2 class="section__title" style="color: black;">
+              <%= items[i].title %>
+            </h2>
+            <img class="section__image" src="/img/<%= items[i].image %>">
+          </a>
+          <form class="button_delete" method="post" action="/items/delete">
+            <input type="hidden" value="<%= items[i].id %>" name="id">
+            <input class="floating-button" type="submit" value="Удалить">
+          </form>
+        </div>
+        <% } else { %>
+          <div class="section card" >
+            <a href="/items/<%= items[i].id %>/show">
+              <h2 class="section__title" style="color: black;">
+                <%= items[i].title %>
+              </h2>
+              <img class="section__image" src="/img/<%= items[i].image %>">
+            </a>
+          </div>
+          <% } %>
+            <% } %>
+
+        </div>
+</div>
+    
+
+    <%- include('../particles/footer.ejs') %>

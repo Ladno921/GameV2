@@ -1,0 +1,169 @@
+.changes {
+    padding-top: 3%;
+    display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.item {
+    display: inline-block;
+    width: 100%;
+}
+
+.show__title{
+    color: white;
+}
+
+.description {
+    color: lightgray;
+    text-align: justify;
+    display: inline-block;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    vertical-align: top;
+}
+
+.add_basket{
+    margin: 1%;
+}
+
+.add_basket-button{
+    background-color: rgb(221, 221, 221);
+    border: none;
+    font-size: large;
+    font-weight: 500;
+}
+
+.button_delete-button{
+    background-color: rgb(221, 221, 221);
+    border: none;
+    font-size: large;
+    font-weight: 500;
+}
+
+.add_basket-button:hover{
+    cursor: pointer;
+    color: rgb(131, 131, 131);
+}
+
+.button_delete-button:hover{
+    cursor: pointer;
+    color: rgb(131, 131, 131);
+}
+
+.system_requirements{
+    display: inline-block;
+    vertical-align: top;
+    /* margin-top: ; */
+}
+
+.system-item{
+    display: block;
+    margin: 3.5%;
+    width: 100%;
+    
+    font-size: 20px;
+    font-weight: 600;
+    color: lightgray;
+}
+
+.object{
+    color: lightgray;
+    text-align: justify;
+    font-size: 26px;
+}
+
+.form-item {
+    border-radius: 2.5%;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, .1);
+    background-color: rgba(19, 35, 47, .9);
+    padding: 3%;
+    margin: 2.5%;
+}
+
+.comment__input{
+    border: 0%;
+    /* border-radius: 5px; */
+    display: inline-block;
+    margin-top: 2.5px;
+    margin-bottom: 2.5px;
+    margin-left: 20px;
+    font-size: 17px;
+}
+
+.comments{
+    color: lightgrey;
+    display: block;
+    background-color: rgb(172, 172, 172);
+    border-radius: 25px;
+    margin-top: 20px;
+    padding: 13px;
+}
+
+.comments__label{
+    color: black;
+    display: block;
+    text-align: center;
+}
+
+.comment__item{
+    padding: 7px;
+}
+
+.comment__item-smaller-1{
+    font-size: 17px;
+    display: inline-block;
+}
+
+.comment__item-smaller-2{
+    font-size: 15px;
+    display: inline-block;
+}
+
+.formDelete{
+    border: 0%;
+}
+
+.deleteComment{
+    background-color: rgb(172, 172, 172);
+    color: black;
+    border: 0%;
+    margin-left: 1%;
+    border: 0px;
+    font-weight: 600;
+    margin-bottom: 1.5%;
+}
+
+.deleteComment:hover{
+    cursor: pointer;
+    color: darkred;
+    
+    border: 0px;
+}
+
+.comments__form{
+    display: block;
+    float: left;
+}
+
+.comment{
+    border-radius: 4px;
+    margin-left: 1%;
+    margin-bottom: 0.5%;
+    padding: 2.5px;
+    background-color: rgb(221, 221, 221);
+    color: black;
+}
+
+.button__comment{
+    font-size: larger;
+    border: 0vh;
+    border-radius: 5px;
+    margin-bottom: 1.5%;
+}
+
+.button__comment:hover{
+    font-size: large;
+    border: 0vh;
+    cursor: pointer;
+}

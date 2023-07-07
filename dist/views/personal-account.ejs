@@ -1,0 +1,71 @@
+<%- include('particles/header.ejs') %>
+
+    <%- include('particles/navigation.ejs') %>
+
+
+        <% if(auth){ %>
+            <div class="form">
+                <ul class="form-pers-acc">
+                    <li>
+                        <h1 class="form-item color">Личный Кабинет</h1>
+                        <div class="user__infromation">
+                            <input type="hidden" value="<%= users.id %>" placeholder="<%= users.id %>" id="id"
+                                name="id">
+
+                            <div class="user__inf-item color">
+                                <p class="item-text">Ваш никнейм:</p>
+                                <%= name %>
+                            </div>
+
+                            <div class="user__inf-item color">
+                                <p class="item-text">Ваш email:</p>
+                                <%= email %>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <h2 class="form-item color">Изменение Ника</h2>
+                        <form action="/change-name" method="post">
+                            <div class="user__inf-item color">
+                                <p class="item-text">Введите текущий пароль</p>
+                                <input class="input" type="password" id="password" name="current_password"
+                                    placeholder="Введите пароль" autocomplete="off" required>
+                            </div>
+                            <div class="user__inf-item color">
+                                <p class="item-text">Введите новый ник</p>
+                                <input class="input" type="text " id="name" name="new_name" placeholder="Введите ник"
+                                    autocomplete="off" required>
+                            </div>
+
+                            <button type="submit" class="button2">Изменить</button>
+                        </form>
+                        
+
+                    </li>
+                    <li>
+                        <h2 class="form-item color">Изменение Пароля</h2>
+                        <form action="/change-password" method="post">
+                            <div class="user__inf-item color">
+                                <p class="item-text">Введите текущий пароль</p>
+                                <input class="input" type="password" id="password" name="current_password"
+                                    placeholder="Введите пароль" autocomplete="off" required>
+                            </div>
+                            <div class="user__inf-item color">
+                                <p class="item-text">Введите новый пароль</p>
+                                <input class="input" type="password" id="password" name="new_password"
+                                    placeholder="Введите пароль" autocomplete="off" required>
+                            </div>
+                            <button type="submit" class="button2">Изменить</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+            <% }else{ %>
+                <h1 class="Error"> ERROR 404 </h1>
+                <h1 class="Error"> Эта страница недоступна </h1>
+                <% } %>
+
+
+                    <%- include('./particles/footer.ejs') %>

@@ -1,0 +1,94 @@
+<%- include('particles/header.ejs') %>
+
+  <%- include('particles/navigation.ejs') %>
+
+
+    <div class="homePage">
+      <!-- SLIDER -->
+      <div class="slider">
+        <div class="sliders__pictures">
+          <div class="slider__wrapper">
+            <div class="slider__item"><img class="slider__image" src="/img/i1.webp"></div>
+            <div class="slider__item"><img class="slider__image" src="/img/i2.webp"></div>
+            <div class="slider__item"><img class="slider__image" src="/img/i3.webp"></div>
+            <div class="slider__item"><img class="slider__image" src="/img/i4.webp"></div>
+            <div class="slider__item"><img class="slider__image" src="/img/i5.webp"></div>
+          </div>
+        </div>
+        <button class="slider__control slider__control--l" id="right"><%- include('icons/leftBtn.ejs') %></button>
+        <button class="slider__control slider__control--r" id="left"><%- include('icons/RightBtn.ejs') %></button>
+      </div>
+
+      <!-- TOP 4 -->
+
+      <h2 class="newest">Новинки</h2>
+      <div class="newest__box">
+        <% for (let i=0; i < items.length; i++) { %>
+          <% if (admin) { %>
+            <div class="section card">
+              <a href="/items/<%= items[i].id %>/show">
+                <h2 class="section__title-black"><%= items[i].title %></h2>
+                <img class="section__image" src="/img/<%= items[i].image %>">
+              </a>
+              <form class="add_basket" method="post" action="/items/addToBasket">
+                <input type="hidden" value="<%= items[i].id %>" name="id">
+                <input class="add_basket-button" type="submit" value="Добавить в избранное">
+              </form>
+
+              <form class="button_delete" method="post" action="/items/delete">
+                <input type="hidden" value="<%= items[i].id %>" name="id">
+                <input class="button_delete-button" type="submit" value="Удалить">
+              </form>
+            </div>
+            <% } else { %>
+              <div class="section card">
+                <a href="/items/<%= items[i].id %>/show">
+                  <h2 class="section__title-black">
+                    <%= items[i].title %>
+                  </h2>
+                  <img class="section__image" src="/img/<%= items[i].image %>">
+                </a>
+              </div>
+              <% } %>
+                <% } %>
+      </div>
+    </div>
+
+    <script>
+      let maxWidth = 1400;
+      let itemsCount = 2;
+      console.log(document.documentElement.clientWidth)
+      addEventListener('resize', () => {
+        if (document.documentElement.clientWidth < 760) {
+          document.querySelector(".sliders__pictures").style.width = "450px"
+        }
+      })
+      const sliders = document.querySelectorAll(".sliders__pictures")
+      sliders.forEach(slider => {
+        let currentIndex = 0;
+        let currentMargin = 0;
+        const sliderWrapper = slider.querySelector(".slider__wrapper")
+        const items = sliderWrapper.querySelectorAll(".slider__item")
+        items.forEach(items => {
+          items.style.width = maxWidth / itemsCount + 'px';
+        })
+        sliderWrapper.style.width = maxWidth / itemsCount + items.length + 'px';
+        const LeftBtn = document.querySelector(".slider__control--l")
+        const RightBtn = document.querySelector(".slider__control--r")
+        RightBtn.addEventListener('click', () => {
+          if (currentIndex < 3) {
+            currentIndex++;
+            currentMargin = currentMargin - 700;
+            sliderWrapper.style.marginLeft = currentMargin + 'px';
+          }
+        })
+        LeftBtn.addEventListener('click', () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            currentMargin = currentMargin + 700;
+            sliderWrapper.style.marginLeft = currentMargin + 'px';
+          }
+        })
+      })
+    </script>
+    <%- include('particles/footer.ejs') %>

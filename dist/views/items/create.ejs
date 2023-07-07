@@ -1,0 +1,70 @@
+<%- include('../particles/header.ejs') %>
+
+  <%- include('../particles/navigation.ejs') %>
+    <div class="content">
+      <form class="create__form" action="/items/store" method="post">
+
+        <div class="form">
+          <h1 class="color">Создание</h1>       
+
+          <input name="cat_id" type="hidden" value="categ_id">
+
+          <div class="form-group block">
+            <label class="form-group__label color" for="title">Название</label>
+            <input class="form-group__input" type="text" id="title" name="title" placeholder="Введите Название"
+              required>
+          </div>
+
+          <div class="form-group margin">
+            <label class="form-group__label color" for="image">Фото</label>
+            <input name="image" type="file" placeholder="файл" required>
+          </div>
+
+          <div class="form-group margin">
+            <label class="form-group__label color" for="image">Процессор</label>
+            <input class="form-group__input" type="text" id="CPU" name="CPU" placeholder="Введите Название"
+              required>
+          </div>
+          
+          <div class="form-group margin">
+            <label class="form-group__label color" for="image">Оперативная память</label>
+            <input class="form-group__input" type="text" id="RAM" name="RAM" placeholder="Введите Название"
+              required>
+          </div>
+          
+          <div class="form-group margin">
+            <label class="form-group__label color" for="image">Видеокарта</label>
+            <input class="form-group__input" type="text" id="video_card" name="video_card" placeholder="Введите Название"
+              required>
+          </div>
+          
+          <div class="form-group margin">
+            <label class="form-group__label color" for="image">Место на диске</label>
+            <input class="form-group__input" type="text" id="disc_space" name="disc_space" placeholder="Введите Название"
+              required> 
+          </div>
+
+          
+          <div class="form-group margin">
+            <label class="form-group__label color" for="description">Описание</label>
+            <input class="form-group__input" type="text" id="description" name="description" placeholder="Об игре"
+              required>
+          </div>
+
+          <div class="box block">
+            <label class="form-group__label color" for="cat_id">Жанр</label>
+
+            <% for (let i=0; i < categories.length; i++){%>
+              <div class="category">
+                <input name="check" type="checkbox" value="<%= categories[i].id%>">
+                <span style="color:lightgrey"><%= categories[i].title %></span>
+              </div>
+            <% } %>
+          </div>
+          <input class="button1 button-block" type="submit" value="Создать">
+        </div>
+
+      </form>
+    </div>
+
+    <%- include('../particles/footer.ejs') %>

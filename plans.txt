@@ -1,0 +1,8 @@
+let genres = await prisma.genres.findMany({})
+        let mass = []
+        let all = "";
+        let one = "";
+        for (let i= 0; i < genres.length; i++ ){
+            one = req.body.check
+           
+        }

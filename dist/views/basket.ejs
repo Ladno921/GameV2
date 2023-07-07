@@ -1,0 +1,12 @@
+<%- include('particles/header.ejs') %>
+
+  <%- include('particles/navigation.ejs') %>
+
+    <% if(auth) { %>
+        
+    <% } else { %>
+        <h1 class="Error"> ERROR 404 </h1>
+        <h1 class="Error"> Эта страница недоступна </h1>
+    <% } %>
+
+  <%- include('particles/footer.ejs') %>
