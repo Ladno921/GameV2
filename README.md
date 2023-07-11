@@ -45,6 +45,14 @@
 Удаление таблицы в БД
     DROP TABLE items;
 
+GitHub смена репозитория
+    git remote rm origin
+    git add .
+    git commit -m 'текст'
+    git remote add origin ссылка 
+    git push -u origin main
+    git push
+
 # Настройка проекта
 
 Установка зависимостей
