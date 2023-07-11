@@ -2,11 +2,11 @@
 
 <%- include('./particles/navigation.ejs') %>
 
-    <!-- <div class="content"> -->
+    <div class="content-grid">
         <% for (let i=0; i < items.length; i++) { %>
             <div class="section">
                 <a href="/items/<%= items[i].id %>/show">
-                    <h2 class="section__title"><%= items[i].title %></h2>
+                    <h2 class="section__title-b"><%= items[i].title %></h2>
                     <img class="section__image" src="/img/<%= items[i].image %>">
                 </a>
                 <% if(admin){ %>
@@ -22,6 +22,6 @@
                 <% } %>
             </div>
         <% } %>
-    <!-- </div> -->
+    </div>
 
 <%- include('./particles/footer.ejs') %>

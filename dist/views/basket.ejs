@@ -2,11 +2,50 @@
 
   <%- include('particles/navigation.ejs') %>
 
-    <% if(auth) { %>
-        
+  
+    <% if(admin) { %>
+      <div class="content-grid">
+      <% for(let i = 0; i < items.length; i++){ %>
+        <div class="section">
+          <a href="/items/<%= items[i].id %>/show">
+            <h2 class="section__title-black">
+              <%= items[i].title %>
+            </h2>
+            <img class="section__image" src="/img/<%= items[i].image %>">
+          </a>
+            <form class="add_basket" method="post" action="/items/deleteFromBasket">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="add_basket-button" type="submit" value="Убрать из избранного">
+            </form>
+
+            <form class="button_delete" method="post" action="/items/delete">
+              <input type="hidden" value="<%= items[i].id %>" name="id">
+              <input class="button_delete-button" type="submit" value="Удалить">
+            </form>
+        </div>
+        <% } %>
+      </div>
+    <% } else if(auth){%>
+      <div class="content-grid">
+        <div class="section">
+        <a href="/items/<%= items[i].id %>/show">
+          <h2 class="section__title-black">
+            <%= items[i].title %>
+          </h2>
+          <img class="section__image" src="/img/<%= items[i].image %>">
+        </a>
+          <form class="add_basket" method="post" action="/items/deleteFromBasket">
+            <input type="hidden" value="<%= items[i].id %>" name="id">
+            <input class="add_basket-button" type="submit" value="Убрать из избранного">
+          </form>
+      </div>
+      </div>
     <% } else { %>
-        <h1 class="Error"> ERROR 404 </h1>
-        <h1 class="Error"> Эта страница недоступна </h1>
+      <h1 class="Error"> ERROR 404 </h1>
+      <h1 class="Error"> Эта страница недоступна </h1>
     <% } %>
+  
+
+    
 
   <%- include('particles/footer.ejs') %>

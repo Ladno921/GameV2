@@ -26,12 +26,20 @@ class BasketController {
                     id: Number(id),
                 }
             });
-            const user_items = yield prisma.user_items.create({
-                data: {
+            const user_item = yield prisma.user_items.findMany({
+                where: {
                     user_id: Number(user[0].id),
                     item_id: Number(id),
                 }
             });
+            if (user_item[0] == undefined) {
+                const user_items = yield prisma.user_items.create({
+                    data: {
+                        user_id: Number(user[0].id),
+                        item_id: Number(id),
+                    }
+                });
+            }
             const basket = yield prisma.basket.create({
                 data: {
                     title: item[0].title,
@@ -98,7 +106,9 @@ class BasketController {
                     },
                 }
             });
+            console.log(items);
             res.render("basket", {
+                'items': items,
                 auth: req.session.auth,
                 admin: req.session.admin,
                 name: req.session.name

@@ -22,12 +22,22 @@ export class BasketController {
             }
         });
 
-        const user_items = await prisma.user_items.create({
-            data:{
+        const user_item = await prisma.user_items.findMany({
+            where:{
                 user_id:Number(user[0].id),
                 item_id:Number(id),
             }
-        });
+        })
+
+        if(user_item[0] == undefined){
+            const user_items = await prisma.user_items.create({
+                data:{
+                    user_id:Number(user[0].id),
+                    item_id:Number(id),
+                }
+            });
+        }
+        
 
         const basket = await prisma.basket.create({
             data:{
@@ -97,7 +107,10 @@ export class BasketController {
             }
         });
 
+        console.log(items)
+
         res.render("basket",{
+            'items': items,
             auth: req.session.auth,
             admin: req.session.admin,
             name: req.session.name

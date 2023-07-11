@@ -33,12 +33,7 @@
                 <input type="hidden" value="<%= items[i].id %>" name="id">
                 <input class="add_basket-button" type="submit" value="Добавить в избранное">
               </form>
-
-              <form class="add_basket" method="post" action="/items/deleteFromBasket">
-                <input type="hidden" value="<%= items[i].id %>" name="id">
-                <input class="add_basket-button" type="submit" value="Убрать из избранного">
-              </form>
-
+              
               <form class="button_delete" method="post" action="/items/delete">
                 <input type="hidden" value="<%= items[i].id %>" name="id">
                 <input class="button_delete-button" type="submit" value="Удалить">

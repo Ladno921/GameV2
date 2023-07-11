@@ -21,9 +21,6 @@ li {
   list-style-type: none;
 }
 
-h3{
-  margin: 1%;
-}
 
 .width{
   width: 100%;
@@ -43,6 +40,14 @@ h3{
 .content {
   max-width: 1536px;
   margin: 0 auto;
+  min-height: 100vh;
+}
+
+.content-grid{
+  max-width: 1536px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
   min-height: 100vh;
 }
 
@@ -239,6 +244,15 @@ h3{
   display: block;
   margin-top: 0;
   text-align: center;
+}
+
+.section__title-b{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 17.5px;
+  display: block;
+  margin-top: 0;
+  text-align: center;
+  color: black;
 }
 
 .section__title-black {
